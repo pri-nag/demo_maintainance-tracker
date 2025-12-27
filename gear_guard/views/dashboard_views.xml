@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dashboard Action -->
+    <record id="action_gear_guard_dashboard" model="ir.actions.act_window">
+        <field name="name">Maintenance Dashboard</field>
+        <field name="res_model">gear.maintenance.request</field>
+        <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
+        <field name="context">{
+            'search_default_filter_my': 1,
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No maintenance requests assigned to you
+            </p>
+            <p>
+                Create or get assigned to maintenance requests to see them here.
+            </p>
+        </field>
+    </record>
+
+    <!-- Overdue Requests Action -->
+    <record id="action_overdue_requests" model="ir.actions.act_window">
+        <field name="name">Overdue Requests</field>
+        <field name="res_model">gear.maintenance.request</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('is_overdue', '=', True)]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Open Requests Action -->
+    <record id="action_open_requests" model="ir.actions.act_window">
+        <field name="name">Open Requests</field>
+        <field name="res_model">gear.maintenance.request</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('state', 'in', ['new', 'in_progress'])]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Today's Scheduled Requests -->
+    <record id="action_today_requests" model="ir.actions.act_window">
+        <field name="name">Today's Schedule</field>
+        <field name="res_model">gear.maintenance.request</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="context">{'search_default_filter_today': 1}</field>
+    </record>
+
+    <!-- Dashboard Menu Items -->
+    <menuitem
+        id="menu_gear_guard_dashboard"
+        name="My Dashboard"
+        parent="menu_gear_guard_maintenance"
+        action="action_gear_guard_dashboard"
+        sequence="1"/>
+
+    <menuitem
+        id="menu_overdue_requests"
+        name="Overdue Requests"
+        parent="menu_gear_guard_maintenance"
+        action="action_overdue_requests"
+        sequence="15"/>
+
+    <menuitem
+        id="menu_open_requests"
+        name="Open Requests"
+        parent="menu_gear_guard_maintenance"
+        action="action_open_requests"
+        sequence="12"/>
+
+</odoo>

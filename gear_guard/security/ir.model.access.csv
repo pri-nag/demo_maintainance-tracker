@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gear_equipment_user,gear.equipment.user,model_gear_equipment,base.group_user,1,0,0,0
+access_gear_equipment_manager,gear.equipment.manager,model_gear_equipment,base.group_system,1,1,1,1
+access_gear_maintenance_team_user,gear.maintenance.team.user,model_gear_maintenance_team,base.group_user,1,0,0,0
+access_gear_maintenance_team_manager,gear.maintenance.team.manager,model_gear_maintenance_team,base.group_system,1,1,1,1
+access_gear_maintenance_request_user,gear.maintenance.request.user,model_gear_maintenance_request,base.group_user,1,1,1,0
+access_gear_maintenance_request_manager,gear.maintenance.request.manager,model_gear_maintenance_request,base.group_system,1,1,1,1
+access_gear_equipment_category_user,gear.equipment.category.user,model_gear_equipment_category,base.group_user,1,0,0,0
+access_gear_equipment_category_manager,gear.equipment.category.manager,model_gear_equipment_category,base.group_system,1,1,1,1
+access_gear_maintenance_request_wizard_user,gear.maintenance.request.wizard.user,model_gear_maintenance_request_wizard,base.group_user,1,1,1,1
+access_gear_maintenance_assign_wizard_user,gear.maintenance.assign.wizard.user,model_gear_maintenance_assign_wizard,base.group_user,1,1,1,1

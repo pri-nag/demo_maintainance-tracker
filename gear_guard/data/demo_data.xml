@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Demo Equipment Categories -->
+        <record id="demo_category_electrical" model="gear.equipment.category">
+            <field name="name">Electrical</field>
+            <field name="code">ELEC</field>
+            <field name="description">Electrical equipment including generators, panels, and power systems</field>
+            <field name="color">1</field>
+        </record>
+        
+        <record id="demo_category_hvac" model="gear.equipment.category">
+            <field name="name">HVAC</field>
+            <field name="code">HVAC</field>
+            <field name="description">Heating, ventilation, and air conditioning systems</field>
+            <field name="color">2</field>
+        </record>
+        
+        <record id="demo_category_it" model="gear.equipment.category">
+            <field name="name">IT Equipment</field>
+            <field name="code">IT</field>
+            <field name="description">Computers, servers, network equipment</field>
+            <field name="color">4</field>
+        </record>
+        
+        <record id="demo_category_mechanical" model="gear.equipment.category">
+            <field name="name">Mechanical</field>
+            <field name="code">MECH</field>
+            <field name="description">Elevators, motors, pumps, and mechanical systems</field>
+            <field name="color">5</field>
+        </record>
+        
+        <record id="demo_category_office" model="gear.equipment.category">
+            <field name="name">Office Equipment</field>
+            <field name="code">OFFC</field>
+            <field name="description">Printers, copiers, and office machinery</field>
+            <field name="parent_id" ref="demo_category_it"/>
+            <field name="color">3</field>
+        </record>
+
+        <!-- Demo Maintenance Teams -->
+        <record id="demo_team_electrical" model="gear.maintenance.team">
+            <field name="name">Electrical Team</field>
+            <field name="description">Handles all electrical equipment maintenance</field>
+        </record>
+        
+        <record id="demo_team_mechanical" model="gear.maintenance.team">
+            <field name="name">Mechanical Team</field>
+            <field name="description">Handles mechanical and HVAC equipment</field>
+        </record>
+        
+        <record id="demo_team_it" model="gear.maintenance.team">
+            <field name="name">IT Equipment Team</field>
+            <field name="description">Handles computers, servers, and network equipment</field>
+        </record>
+
+        <!-- Demo Equipment -->
+        <record id="demo_equipment_generator" model="gear.equipment">
+            <field name="name">Backup Generator #1</field>
+            <field name="serial_number">GEN-2024-001</field>
+            <field name="location">Building A - Basement</field>
+            <field name="category_id" ref="demo_category_electrical"/>
+            <field name="maintenance_team_id" ref="demo_team_electrical"/>
+            <field name="purchase_date">2024-01-15</field>
+            <field name="warranty_expiry_date">2027-01-15</field>
+            <field name="notes">Primary backup power generator for Building A</field>
+        </record>
+        
+        <record id="demo_equipment_hvac" model="gear.equipment">
+            <field name="name">HVAC Unit - Floor 3</field>
+            <field name="serial_number">HVAC-2023-012</field>
+            <field name="location">Building A - Rooftop</field>
+            <field name="category_id" ref="demo_category_hvac"/>
+            <field name="maintenance_team_id" ref="demo_team_mechanical"/>
+            <field name="purchase_date">2023-06-20</field>
+            <field name="warranty_expiry_date">2026-06-20</field>
+            <field name="notes">Central air conditioning unit for 3rd floor</field>
+        </record>
+        
+        <record id="demo_equipment_server" model="gear.equipment">
+            <field name="name">Main Server Rack</field>
+            <field name="serial_number">SRV-2024-100</field>
+            <field name="location">Server Room - Building B</field>
+            <field name="category_id" ref="demo_category_it"/>
+            <field name="maintenance_team_id" ref="demo_team_it"/>
+            <field name="purchase_date">2024-03-01</field>
+            <field name="warranty_expiry_date">2027-03-01</field>
+            <field name="notes">Primary server infrastructure</field>
+        </record>
+        
+        <record id="demo_equipment_elevator" model="gear.equipment">
+            <field name="name">Elevator #2</field>
+            <field name="serial_number">ELV-2020-002</field>
+            <field name="location">Building A - Central</field>
+            <field name="category_id" ref="demo_category_mechanical"/>
+            <field name="maintenance_team_id" ref="demo_team_mechanical"/>
+            <field name="purchase_date">2020-08-10</field>
+            <field name="warranty_expiry_date">2025-08-10</field>
+            <field name="notes">Passenger elevator, capacity 10 persons</field>
+        </record>
+        
+        <record id="demo_equipment_printer" model="gear.equipment">
+            <field name="name">Industrial Printer</field>
+            <field name="serial_number">PRT-2024-050</field>
+            <field name="location">Print Room - Floor 1</field>
+            <field name="category_id" ref="demo_category_office"/>
+            <field name="maintenance_team_id" ref="demo_team_it"/>
+            <field name="purchase_date">2024-02-15</field>
+            <field name="warranty_expiry_date">2026-02-15</field>
+            <field name="notes">High-volume production printer</field>
+        </record>
+
+        <!-- Demo Maintenance Requests -->
+        <record id="demo_request_generator_check" model="gear.maintenance.request">
+            <field name="name">Monthly Generator Inspection</field>
+            <field name="description">Perform monthly inspection of backup generator. Check oil levels, battery condition, and run test cycle.</field>
+            <field name="equipment_id" ref="demo_equipment_generator"/>
+            <field name="team_id" ref="demo_team_electrical"/>
+            <field name="request_type">preventive</field>
+            <field name="priority">1</field>
+            <field name="state">new</field>
+            <field name="scheduled_date" eval="(DateTime.now() + relativedelta(days=3)).strftime('%Y-%m-%d 09:00:00')"/>
+            <field name="duration_hours">2.0</field>
+        </record>
+        
+        <record id="demo_request_hvac_noise" model="gear.maintenance.request">
+            <field name="name">HVAC Making Unusual Noise</field>
+            <field name="description">Users on floor 3 reported unusual rattling noise from the HVAC unit. Needs inspection and possible belt replacement.</field>
+            <field name="equipment_id" ref="demo_equipment_hvac"/>
+            <field name="team_id" ref="demo_team_mechanical"/>
+            <field name="request_type">corrective</field>
+            <field name="priority">2</field>
+            <field name="state">in_progress</field>
+            <field name="scheduled_date" eval="(DateTime.now() - relativedelta(days=1)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="duration_hours">3.0</field>
+        </record>
+        
+        <record id="demo_request_server_backup" model="gear.maintenance.request">
+            <field name="name">Quarterly Server Maintenance</field>
+            <field name="description">Perform quarterly maintenance: check cooling, clean filters, verify backup systems, update firmware.</field>
+            <field name="equipment_id" ref="demo_equipment_server"/>
+            <field name="team_id" ref="demo_team_it"/>
+            <field name="request_type">preventive</field>
+            <field name="priority">1</field>
+            <field name="state">new</field>
+            <field name="scheduled_date" eval="(DateTime.now() + relativedelta(days=7)).strftime('%Y-%m-%d 22:00:00')"/>
+            <field name="duration_hours">4.0</field>
+        </record>
+        
+        <record id="demo_request_elevator_service" model="gear.maintenance.request">
+            <field name="name">Annual Elevator Certification</field>
+            <field name="description">Annual safety inspection and certification as required by regulations. Coordinate with certified inspector.</field>
+            <field name="equipment_id" ref="demo_equipment_elevator"/>
+            <field name="team_id" ref="demo_team_mechanical"/>
+            <field name="request_type">preventive</field>
+            <field name="priority">3</field>
+            <field name="state">new</field>
+            <field name="scheduled_date" eval="(DateTime.now() + relativedelta(days=14)).strftime('%Y-%m-%d 08:00:00')"/>
+            <field name="duration_hours">6.0</field>
+        </record>
+        
+        <record id="demo_request_printer_jam" model="gear.maintenance.request">
+            <field name="name">Printer Paper Jam Issue</field>
+            <field name="description">Frequent paper jams occurring. Needs roller cleaning and possible replacement of feed mechanism.</field>
+            <field name="equipment_id" ref="demo_equipment_printer"/>
+            <field name="team_id" ref="demo_team_it"/>
+            <field name="request_type">corrective</field>
+            <field name="priority">2</field>
+            <field name="state">repaired</field>
+            <field name="scheduled_date" eval="(DateTime.now() - relativedelta(days=5)).strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="completion_date" eval="(DateTime.now() - relativedelta(days=4)).strftime('%Y-%m-%d 15:30:00')"/>
+            <field name="duration_hours">2.5</field>
+        </record>
+        
+        <record id="demo_request_hvac_filter" model="gear.maintenance.request">
+            <field name="name">HVAC Filter Replacement</field>
+            <field name="description">Replaced air filters as part of scheduled maintenance. System running smoothly now.</field>
+            <field name="equipment_id" ref="demo_equipment_hvac"/>
+            <field name="team_id" ref="demo_team_mechanical"/>
+            <field name="request_type">preventive</field>
+            <field name="priority">0</field>
+            <field name="state">repaired</field>
+            <field name="scheduled_date" eval="(DateTime.now() - relativedelta(days=10)).strftime('%Y-%m-%d 09:00:00')"/>
+            <field name="completion_date" eval="(DateTime.now() - relativedelta(days=10)).strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="duration_hours">2.0</field>
+        </record>
+
+    </data>
+</odoo>

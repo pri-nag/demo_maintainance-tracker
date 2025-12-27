@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cron Job: Update Overdue Status for Preventive Maintenance -->
+    <record id="ir_cron_update_overdue_maintenance" model="ir.cron">
+        <field name="name">GearGuard: Update Overdue Maintenance Requests</field>
+        <field name="model_id" ref="model_gear_maintenance_request"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_update_overdue_status()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+        <field name="doall">False</field>
+    </record>
+</odoo>

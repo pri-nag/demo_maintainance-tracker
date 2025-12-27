@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem
+        id="menu_gear_guard_root"
+        name="GearGuard"
+        sequence="10"
+        web_icon="gear_guard,static/description/icon.png"/>
+
+    <!-- Sub Menus -->
+    <menuitem
+        id="menu_gear_guard_maintenance"
+        name="Maintenance"
+        parent="menu_gear_guard_root"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_gear_guard_equipment"
+        name="Equipment"
+        parent="menu_gear_guard_root"
+        sequence="20"/>
+
+    <menuitem
+        id="menu_gear_guard_configuration"
+        name="Configuration"
+        parent="menu_gear_guard_root"
+        sequence="100"/>
+
+    <!-- Maintenance Request Menu Item -->
+    <menuitem
+        id="menu_maintenance_request"
+        name="Maintenance Requests"
+        parent="menu_gear_guard_maintenance"
+        action="action_maintenance_request"
+        sequence="10"/>
+
+    <!-- Maintenance Calendar Menu Item -->
+    <menuitem
+        id="menu_maintenance_calendar"
+        name="Maintenance Calendar"
+        parent="menu_gear_guard_maintenance"
+        action="action_maintenance_request_calendar"
+        sequence="20"/>
+
+    <!-- Equipment Menu Item -->
+    <menuitem
+        id="menu_equipment"
+        name="Equipment"
+        parent="menu_gear_guard_equipment"
+        action="action_equipment"
+        sequence="10"/>
+
+    <!-- Scrapped Equipment Menu Item -->
+    <menuitem
+        id="menu_equipment_scrapped"
+        name="Scrapped Equipment"
+        parent="menu_gear_guard_equipment"
+        action="action_equipment_scrapped"
+        sequence="20"/>
+
+    <!-- Maintenance Teams Menu Item -->
+    <menuitem
+        id="menu_maintenance_team"
+        name="Maintenance Teams"
+        parent="menu_gear_guard_configuration"
+        action="action_maintenance_team"
+        sequence="10"/>
+
+</odoo>
